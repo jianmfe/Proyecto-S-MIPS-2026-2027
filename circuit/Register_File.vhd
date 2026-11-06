@@ -16,7 +16,7 @@ entity Register_File is
     );
 end entity Register_File;
 
-architecture rtl of register_file is
+architecture RTL of register_file is
 
     -- Definición del banco de 32 registros de 32 bits
     type reg_array is array (0 to 31) of std_logic_vector(31 downto 0);
@@ -68,4 +68,4 @@ begin
         end if;
     end process;
 
-end architecture rtl;
+end architecture RTL;
