@@ -480,14 +480,14 @@
     <comp lib="0" loc="(480,700)" name="Tunnel">
       <a name="label" val="Is_LB_Signed"/>
     </comp>
-    <comp lib="0" loc="(490,540)" name="Tunnel">
-      <a name="label" val="Is_Syscall"/>
-    </comp>
     <comp lib="0" loc="(490,740)" name="Tunnel">
       <a name="label" val="Is_JR"/>
     </comp>
     <comp lib="0" loc="(490,780)" name="Tunnel">
       <a name="label" val="Is_Lui"/>
+    </comp>
+    <comp lib="0" loc="(500,540)" name="Tunnel">
+      <a name="label" val="Is_Syscall"/>
     </comp>
     <comp lib="0" loc="(550,1010)" name="Tunnel">
       <a name="label" val="MEM_WDATA"/>
@@ -778,7 +778,7 @@
     <wire from="(310,1370)" to="(320,1370)"/>
     <wire from="(330,1110)" to="(330,1120)"/>
     <wire from="(380,520)" to="(390,520)"/>
-    <wire from="(380,540)" to="(490,540)"/>
+    <wire from="(380,540)" to="(500,540)"/>
     <wire from="(380,560)" to="(390,560)"/>
     <wire from="(380,580)" to="(470,580)"/>
     <wire from="(380,600)" to="(390,600)"/>
