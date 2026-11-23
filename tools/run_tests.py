@@ -15,7 +15,8 @@ import tempfile
 
 ROOT = Path(__file__).resolve().parent.parent
 HERE = ROOT/'tools'
-JAR = os.environ.get('LOGISIM_JAR', '/snap/logisim-evolution-snapcraft/current/jar/logisim-evolution.jar')
+#JAR = os.environ.get('LOGISIM_JAR', '/snap/logisim-evolution-snapcraft/current/jar/logisim-evolution.jar')
+JAR = os.environ.get('LOGISIM_JAR', 'C:/Users/lidia/Apps/logisim-evolution/app/logisim-evolution-5.0.0-all.jar')
 MARS = os.environ.get('MARS_JAR', str(Path.home()/'Apps/mars/Mars4_5.jar'))
 JAVA = os.environ.get('JAVA', 'java')
 CICLOS_MAX = 60000  # con 4-5 ciclos por instruccion, el programa mas largo usa unos 8000
@@ -43,7 +44,7 @@ def main():
                            check=True, capture_output=True, text=True)
             mars = subprocess.run([JAVA, '-jar', MARS, 'nc', 'mc', 'CompactTextAtZero', str(fuente)],
                                   capture_output=True, text=True, check=True)
-            imagenes[str(imagen)] = fuente
+            imagenes[os.path.normcase(os.path.normpath(str(imagen)))] = fuente
             esperado[fuente] = normalizar(mars.stdout)
         print(f'Ejecutando {len(fuentes)} programas en la placa...', flush=True)
         orden = [JAVA, f'-Djava.util.prefs.userRoot={directorio}/prefs', '--class-path', JAR,
@@ -56,7 +57,7 @@ def main():
                 continue
             _, imagen, detenido, ciclos, pc, tty = linea.rstrip('\n').split('\t')
             resultados.append(imagen)
-            fuente = imagenes[imagen]
+            fuente = imagenes[os.path.normcase(os.path.normpath(imagen))]
             salida = normalizar(bytes.fromhex(tty).decode())
             ok = detenido == 'true' and salida == esperado[fuente]
             fallos += not ok
